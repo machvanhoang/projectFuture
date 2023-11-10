@@ -2,20 +2,19 @@
 
 if (!function_exists("response_error")) {
     /**
-     * Handle error response.
-     *
-     * @param array $error
+     * Summary of response_error
+     * @param array|object|string $error
      * @param int $code
      * @return Illuminate\Http\JsonResponse|mixed
      */
-    function response_error(array $error = [], int $code = 404)
+    function response_error(array | object | string $error, int $code = 404)
     {
         $response = [
             'success' => false,
         ];
 
         if (!empty($error)) {
-            $response['data'] = $error;
+            $response['errors'] = $error;
         }
 
         return response()->json($response, $code);

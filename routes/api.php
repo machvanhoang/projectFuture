@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AuthSocialController;
+use App\Http\Controllers\Api\SuggestionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +30,7 @@ Route::prefix('social')->controller(AuthSocialController::class)->group(function
 Route::middleware('auth:sanctum')->controller(AuthController::class)->group(function () {
     Route::post('logout', 'logout');
     Route::get('user', 'user');
+    Route::prefix('seo')->group(function () {
+        Route::get('suggestion', [SuggestionController::class, 'index']);
+    });
 });
